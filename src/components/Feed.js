@@ -48,6 +48,11 @@ export default function Feed() {
 
     useEffect(() => {
         async function fetchPosts() {
+            if (!supabase) {
+                console.warn("Supabase client not initialized. Falling back to mock data.");
+                setLoading(false);
+                return;
+            }
             try {
                 const { data, error } = await supabase
                     .from('posts')
