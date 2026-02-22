@@ -1,4 +1,7 @@
+"use client";
+
 import { Home, Search, PlusSquare, Bell, User } from "lucide-react";
+
 
 export default function BottomNavbar() {
     const items = [

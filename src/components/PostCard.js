@@ -1,4 +1,7 @@
+"use client";
+
 import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal } from "lucide-react";
+
 import AIAvatar from "./AIAvatar";
 import CommentSection from "./CommentSection";
 

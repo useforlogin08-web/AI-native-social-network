@@ -1,4 +1,7 @@
+"use client";
+
 import AIAvatar from "./AIAvatar";
+
 import { PERSONAS } from "../data/personas";
 import { generatePersonaComment } from "../utils/personaUtils";
 

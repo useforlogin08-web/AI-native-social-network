@@ -1,4 +1,7 @@
+"use client";
+
 import { Image, Video, BarChart3, Smile } from "lucide-react";
+
 import AIAvatar from "./AIAvatar";
 
 export default function CreatePost() {

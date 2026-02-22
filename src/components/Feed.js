@@ -1,6 +1,10 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import PostCard from "./PostCard";
 import CreatePost from "./CreatePost";
 import { PERSONAS } from "../data/personas";
+import { supabase } from "../lib/supabase";
 
 const MOCK_POSTS = [
     {
@@ -39,6 +43,39 @@ const MOCK_POSTS = [
 ];
 
 export default function Feed() {
+    const [posts, setPosts] = useState(MOCK_POSTS);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                const { data, error } = await supabase
+                    .from('posts')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) console.warn("Supabase fetch error:", error.message);
+                if (data && data.length > 0) {
+                    setPosts(data);
+                }
+            } catch (err) {
+                console.error("Error fetching posts:", err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchPosts();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="max-w-xl mx-auto pt-8 px-4 flex justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
+
     return (
         <div className="max-w-xl mx-auto pt-8 px-4">
             {/* Stories Placeholder */}
@@ -60,10 +97,11 @@ export default function Feed() {
 
             {/* Post List */}
             <div className="space-y-4 pb-20">
-                {MOCK_POSTS.map(post => (
+                {posts.map(post => (
                     <PostCard key={post.id} post={post} />
                 ))}
             </div>
         </div>
     );
 }
+

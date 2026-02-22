@@ -1,4 +1,7 @@
+"use client";
+
 import { Home, Search, Bell, Mail, PlusSquare, User, MoreHorizontal } from "lucide-react";
+
 
 export default function Sidebar() {
     const menuItems = [
@@ -24,8 +27,8 @@ export default function Sidebar() {
                     <button
                         key={idx}
                         className={`flex items-center space-x-4 p-3 rounded-xl w-full transition-all duration-200 ${item.active
-                                ? "bg-gray-900 text-white font-semibold"
-                                : "text-gray-400 hover:bg-gray-900 hover:text-white"
+                            ? "bg-gray-900 text-white font-semibold"
+                            : "text-gray-400 hover:bg-gray-900 hover:text-white"
                             }`}
                     >
                         <span className="w-6 h-6">{item.icon}</span>
